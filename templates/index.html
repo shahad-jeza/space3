@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+      
+
+
+ {% block content %}
+<style>
+    
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background-color:  	;
+    }
+
+    .head_text{
+    color: white;
+  }
+    .card{
+    box-shadow: 0 16px 48px #E3E7EB;
+
+}
+
+
+</style>
+
+
+
+        
+            <div class="container">
+                <div class="row">
+      
+
+
+              <!-- Blog Entries Column -->
+              <div class="col-md-8 mt-3 left">
+                    {% for post in post_list %}
+           
+
+
+<div class="card mb-3" style="max-width: 700px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{ post.image_url}}" class="card-img" height="285" width= "150" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{post.content|slice:":200" }}</p>
+        <p class="card-text"><small class="text-muted">{{ post.Author }} | {{ post.created_on}}</small></p>
+        <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+                {% endfor %}
+            </div>
+                {% block sidebar %}
+                {% include 'sidebar.html' %}
+                {% endblock sidebar %}
+            </div>
+        </div>
+{%endblock%}
